@@ -7,9 +7,19 @@ function login(event){
         password
     }
     axios.post("http://localhost:8000/login",obj).then((res)=>{
-        alert('Logged in Succesfully')
+        alert(res.data.message)
         console.log(res)
     }).catch(err=>{
         console.log(err)
+        if(err.response.status==401){
+            alert(err.response.data.message)
+        }
+        else if(err.response.status==404){
+            alert(err.response.data.message)
+        }
+        else{
+            console.log(err)
+        }
+        
     })
 }
