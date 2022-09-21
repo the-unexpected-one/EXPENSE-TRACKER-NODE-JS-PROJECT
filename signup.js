@@ -9,14 +9,20 @@ function onSubmit(event){
         password
     }
    
-    axios.post("http://localhost:8000/signUp",obj).then(res=>{
-        console.log(res.status)
+    axios.post("http://localhost:8000/signUp",obj)
+    .then(res=>{
+        console.log(res)
+        alert(res.data.messagejkj)
+
        //abhi response aa nhi raha
     }).catch(err=>{
         console.log(err)
         // alert("User exists")
         if(err.response.status==404){
-            alert("User exists")
+            alert(err.response.data.message)
+            
+        }if( err.response.status==406){
+            alert(err.response.data.message)
         }
         
     })
