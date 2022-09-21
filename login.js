@@ -8,6 +8,7 @@ function login(event){
     }
     axios.post("http://localhost:8000/login",obj).then((res)=>{
         alert(res.data.message)
+        location.replace('/addexpense.html')
         console.log(res)
     }).catch(err=>{
         console.log(err)
