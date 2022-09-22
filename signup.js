@@ -12,7 +12,7 @@ function onSubmit(event){
     axios.post("http://localhost:8000/signUp",obj)
     .then(res=>{
         console.log(res)
-        alert(res.data.messagejkj)
+        alert(res.data.message)
 
        //abhi response aa nhi raha
     }).catch(err=>{

@@ -1,6 +1,7 @@
 window.addEventListener("DOMContentLoaded",()=>
 {
-   axios.get("http://localhost:8000/expenses").then((response)=>{
+    const token=localStorage.getItem('token')
+   axios.get("http://localhost:8000/expenses",{headers: {'Authorization':token}}).then((response)=>{
        console.log(response)
        for(var i=0;i<response.data.length;i++){
            printExpenses(response.data[i])
@@ -34,8 +35,8 @@ function addExpense(event){
 
     };
     // localStorage.setItem(exp.amt,JSON.stringify(exp))
-    
-    axios.post("http://localhost:8000/addexpense",exp)
+    const token=localStorage.getItem('token')
+    axios.post("http://localhost:8000/addexpense",exp,{headers: {'Authorization':token}})
     .then((response)=>{
         console.log(response)
         var a=response.data

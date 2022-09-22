@@ -6,13 +6,21 @@ function login(event){
         emailid,
         password
     }
-    axios.post("http://localhost:8000/login",obj).then((res)=>{
+    axios.post("http://localhost:8000/login",obj)
+    .then((res)=>{
+
         alert(res.data.message)
+        const token=res.data.token;
+        localStorage.setItem('token',token);
+
         location.replace('/addexpense.html')
         console.log(res)
     }).catch(err=>{
+
         console.log(err)
+
         if(err.response.status==401){
+
             alert(err.response.data.message)
         }
         else if(err.response.status==404){
