@@ -2,9 +2,16 @@
 <html>
     <head>
         <title>Expense Tracker</title>
+        <link rel="stylesheet" href="style.css">
+
     </head>
     <body>
-        <form onsubmit="addExpense(event)" id="myForm">
+        <header>
+            <ul>
+            <button id="rzp-button1" style="float:right; color:blue" >Get Premium Membership</button>
+            </ul>
+            
+        </header> <form onsubmit="addExpense(event)" id="myForm">
             <label for="fname">Choose Expense Amount</label>
             <input   type="text" id="fname" name="fname">
             <label for="desc">Choose Description</lable>
@@ -22,6 +29,8 @@
             
 
         
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
         <script src="addexpense.js"></script>
     </body>
