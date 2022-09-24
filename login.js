@@ -32,3 +32,22 @@ function login(event){
         
     })
 }
+
+function forgot(){
+    
+    const forgotpassul=document.getElementById('forgotPass')
+    const div=document.createElement('div')
+    div.setAttribute('id','formDiv');
+    const form=document.createElement('form');
+    const inputtag=document.createElement('input');
+    const labelTag=document.createElement('label');
+    labelTag.setAttribute('for','input');
+    inputtag.setAttribute('id','input');
+    inputtag.setAttribute('type','email')
+    labelTag.innerHTML="Enter E-mail Id";
+    form.appendChild(labelTag);
+    form.appendChild(inputtag);
+    div.appendChild(form);
+    forgotpassul.appendChild(div)
+
+}
