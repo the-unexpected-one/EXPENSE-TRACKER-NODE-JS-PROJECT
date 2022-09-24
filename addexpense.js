@@ -1,7 +1,8 @@
 window.addEventListener("DOMContentLoaded",()=>
 {
     const token=localStorage.getItem('token')
-   axios.get("http://localhost:8000/expenses",{headers: {'Authorization':token}}).then((response)=>{
+   axios.get("http://localhost:8000/expenses",{headers: {'Authorization':token}})
+   .then((response)=>{
        console.log(response)
        for(var i=0;i<response.data.length;i++){
            printExpenses(response.data[i])
@@ -9,7 +10,65 @@ window.addEventListener("DOMContentLoaded",()=>
    }).catch((err)=>{
        document.body.innerHTML="<h4>Something went wrong<h4>"
        console.log(err)})
-})
+
+       axios.get("http://localhost:8000/leaderboard",{headers: {'Authorization':token}})
+       .then(res=>{
+        if(res.data!='Nothing to show'){
+            const division=document.getElementById("division")
+            const unorder=document.getElementById("header");
+            const head=document.createElement('h1');
+            // head.setAttribute(style="text-align:center")
+            head.innerHTML="Leaderboard";
+            head.setAttribute("style","text-align:center")
+            unorder.prepend(head)
+            const arr=Object.keys(res.data)
+            for(let i=0;i<arr.length;i++){
+                const ID =arr[i]
+                // console.log(id)
+                const addboard=document.createElement("li");
+                const button=document.createElement("button")
+                addboard.setAttribute('id','button');
+                button.setAttribute('onclick',`userData(${ID})`)
+                
+                button.innerHTML=`${arr[i]}:${res.data[arr[i]]}`;
+               
+                addboard.appendChild(button)
+                unorder.appendChild(addboard);
+            }
+        }
+        
+       })
+       .catch(err=>{
+        console.log(err)
+       })
+}
+
+)
+function userData(id){
+    axios.get(`http://localhost:8000/userData/${id}`)
+    .then(res=>{
+        const userDetails=document.getElementById('user')
+        user.innerHTML="";
+        const H1tagUserDetails=document.createElement('h3');
+        H1tagUserDetails.innerHTML=`User ${id} details`;
+        user.appendChild(H1tagUserDetails)
+        for(let i=0;i<res.data.length;i++){
+            
+            const user=document.createElement('li');
+            const id=res.data[i].id;
+            const amount=res.data[i].amount;
+            const category=res.data[i].category;
+            user.innerHTML=`id=${id} amount=${amount} category=${category}`
+            userDetails.appendChild(user)
+
+        }
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+}
+
+
 
 function printExpenses(exp){
     let formNODE = document.getElementById("formList");
