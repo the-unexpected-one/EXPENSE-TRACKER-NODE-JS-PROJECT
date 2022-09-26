@@ -3,21 +3,28 @@
     <head>
         <title>Expense Tracker</title>
         <link rel="stylesheet" href="style.css">
+        <script src="frontendreport.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+        <script src="./style.css"></script>
+
 
     </head>
     <style>
         table,th,td {
-          border:1px solid black;
+          border:1px solid white;
           border-collapse: collapse;
         }
+        
 
         #headers{
-            background-color: yellow;
+            background-color:white;
+            color:black;
         }
         </style>
-    <body>
-        <h2 style="text-align: center;">Daily Expenses</h2>
-        <table style="width:100%">
+        <!-- https://images2.alphacoders.com/195/195750.jpg' -->
+    <body style="background-image:url('https://www.pixelstalk.net/wp-content/uploads/images6/Cute-Space-Wallpaper-High-Quality.jpg');background-size: cover;">
+        <h2 style="text-align: center;color:white">Daily Expenses</h2>
+        <table style="width:100%; text-align:center" id="daily" >
 
             <tr id="headers">
               <th>Date</th>
@@ -27,8 +34,8 @@
 
             </tr>
             </table>
-        <h2 style="text-align: center;">Monthly Expenses</h2>
-        <table style="width:100%">
+        <h2 style="text-align: center;color:white">Monthly Expenses</h2>
+        <table style="width:100%; text-align:center"  id="monthly">
 
             <tr id="headers">
               <th>Date</th>
@@ -39,19 +46,18 @@
             </tr>
             </table>
 
-            <h2 style="text-align: center;">Yearly Expenses</h2>
-            <table style="width:100%">
+            <h2 style="text-align: center;color:white">Weekly Expenses</h2>
+            <table style="width:100%; text-align:center" id="weekly">
 
                 <tr id="headers">
                   <th>Date</th>
                   <th>Description</th>
                   <th>Category</th>
                   <th>Expense</th>
-    
                 </tr>
-                </table>
+            </table>
                 <br>
-                <div style="text-align:center" ><button>Download Expense Chart</button></div>
+                <div style="text-align:center" ><button style="background-color:white;color:black;border-color: black;border-radius: 4px;padding:10px"><b>Download Expense Chart</b></button></div>
                 
 
     </body>

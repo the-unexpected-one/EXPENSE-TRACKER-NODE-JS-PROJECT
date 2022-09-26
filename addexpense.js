@@ -19,7 +19,9 @@ window.addEventListener("DOMContentLoaded",()=>
             const head=document.createElement('h1');
             // head.setAttribute(style="text-align:center")
             head.innerHTML="Leaderboard";
-            head.setAttribute("style","text-align:center")
+            head.setAttribute("style","text-align:center;color:white")
+            // head.setAttribute("style","color:yellow")
+
             unorder.prepend(head)
             const arr=Object.keys(res.data)
             for(let i=0;i<arr.length;i++){
@@ -29,6 +31,7 @@ window.addEventListener("DOMContentLoaded",()=>
                 const button=document.createElement("button")
                 addboard.setAttribute('id','button');
                 button.setAttribute('onclick',`userData(${ID})`)
+                button.setAttribute('style','background-color:white; color:black; margin:1px;border-radius:3px; border-color:black')
                 
                 button.innerHTML=`${arr[i]}:${res.data[arr[i]]}`;
                
@@ -50,11 +53,13 @@ function userData(id){
         const userDetails=document.getElementById('user')
         user.innerHTML="";
         const H1tagUserDetails=document.createElement('h3');
+        H1tagUserDetails.setAttribute('style','color:black')
         H1tagUserDetails.innerHTML=`User ${id} details`;
         user.appendChild(H1tagUserDetails)
         for(let i=0;i<res.data.length;i++){
             
-            const user=document.createElement('li');
+            const user=document.createElement('li')
+            user.setAttribute('style','color:black');
             const id=res.data[i].id;
             const amount=res.data[i].amount;
             const category=res.data[i].category;
@@ -73,10 +78,12 @@ function userData(id){
 function printExpenses(exp){
     let formNODE = document.getElementById("formList");
     // console.log(exp)
-    let p=exp.amount;
+    // let p=exp.amount;
     // console.log(p)
-    let childNODE=`<li id=${exp.id}>${exp.amount}-${exp.category}-${exp.description}<button onclick=deleteUser('${exp.id}')>Delete expenses</button><button onclick=editUser('${exp.id}','${exp.amt}','${exp.cat}','${exp.man}')>Edit expenses</button></li>`
-formNODE.innerHTML=formNODE.innerHTML+childNODE;
+    let childNODE=`<li id=${exp.id} style="color:black">${exp.amount}-${exp.category}-${exp.description}<button onclick=deleteUser('${exp.id}') style="background-color:white;color:black;margin:5px; border-radius:3px; border-color:black">Delete expenses</button><button onclick=editUser('${exp.id}','${exp.amt}','${exp.cat}','${exp.man}') style="background-color:white;color:black;margin:5px; border-radius:3px; border-color:black">Edit expenses</button></li>`
+console.log(childNODE)
+    formNODE.innerHTML=formNODE.innerHTML+childNODE;
+    
 
 }  
 
@@ -121,8 +128,12 @@ function deleteUser(Id){
         //console.log(p);
         //localStorage.removeItem(expID);
         const parentNode=document.getElementById("formList");
-        const childNODE=document.getElementById(expID);
-        parentNode.removeChild(childNODE);
+        console.log(parentNode)
+        // console.log(parentNode.innerHTML)
+        let child=document.getElementById(`${expID}`);
+        console.log(expID)
+        console.log(child)
+        parentNode.removeChild(child);
         //localStorage.removeItem(expID);
         //deleteUser(expID)
 
